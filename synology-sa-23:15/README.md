@@ -155,7 +155,7 @@ In a new process, the newly randomized address is independent from its predecess
 
 # Exploit
 
-After chrooting into `squash-fs` inside emulation environment, web server can be started by using the following command:
+After chrooting into `squashfs-root` inside emulation environment, web server can be started by using the following command:
 
 ```bash
 /etc/rc.d/rc1.d/S01systemd start
