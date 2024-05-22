@@ -181,7 +181,7 @@ echo >>/tmp/dump.log
 echo $body | ./synocam_param.cgi.bak
 ```
 
-To improve life quality when debugging CGI, a local debugger can be set up with `qemu-arm-static`, `gdb-multiarch` and pwndbg as shown in [qemu_debug.py](./qemu_debug.py)
+To improve life quality when debugging CGI, a local debugger can be set up with `qemu-arm-static`, `gdb-multiarch` and `pwndbg` as shown in [qemu_debug.py](./qemu_debug.py)
 
 The next step is to find the `system` function’s address. Using `gdb` static linked with `set disable-randomization off` option is sufficient to find it. After two runs, it becomes apparent that the two characters in the middle are randomized and the nearby character to the left of it changes by 1.
 
